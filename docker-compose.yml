@@ -24,7 +24,6 @@ services:
     links:
       - redis
     depends_on:
-      - mongodb
       - redis
     networks:
       - default
