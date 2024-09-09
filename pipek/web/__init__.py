@@ -11,7 +11,9 @@ from . import caches
 from .. import clients
 from .. import models
 
+
 from . import acl
+from . import redis_rq
 
 # from . import oauth2
 
@@ -25,6 +27,7 @@ def create_app():
     caches.init_cache(flask_app)
 
     models.init_db(flask_app)
+    redis_rq.init_rq(flask_app)
 
     # oauth2.init_oauth(flask_app)
     acl.init_acl(flask_app)
