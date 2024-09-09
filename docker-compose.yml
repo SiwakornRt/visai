@@ -22,7 +22,6 @@ services:
     ports:
       - 9000:9000
     links:
-      - mongodb
       - redis
     depends_on:
       - mongodb
@@ -49,13 +48,9 @@ services:
       - ../deployment:/deployment
       - /etc/localtime:/etc/localtime:ro
     links:
-      - mongodb
       - redis
-      - influxdb
     depends_on:
-      - mongodb
       - redis
-      - influxdb
     networks:
       - default
     restart: always
@@ -78,10 +73,8 @@ services:
       - ../deployment:/deployment
       - /etc/localtime:/etc/localtime:ro
     depends_on:
-      - mongodb
       - redis
     links:
-      - mongodb
       - redis
     restart: always
     env_file:
