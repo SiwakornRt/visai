@@ -2,6 +2,8 @@ import os
 import flask
 import logging
 
+from dotenv import load_dotenv, dotenv_values
+
 logger = logging.getLogger(__name__)
 
 settings = None
@@ -23,5 +25,8 @@ def get_settings():
         settings = flask.config.Config(file_path)
         settings.from_object("pipek.default_settings")
         settings.from_envvar("PIPEK_SETTINGS", silent=True)
+
+        load_dotenv()
+        settings.update(dotenv_values(".env"))
 
     return settings

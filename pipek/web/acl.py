@@ -2,7 +2,6 @@ from flask import redirect, url_for, request
 from flask_login import current_user, LoginManager, login_url
 from werkzeug.exceptions import Forbidden, Unauthorized
 from .. import models
-import beanie
 
 from functools import wraps
 
@@ -39,9 +38,7 @@ def load_user(user_id):
     if not user_id or (type(user_id) is str and len(user_id) < 12):
         raise Forbidden()
 
-    user = models.beanie_client.loop.run_until_complete(
-        models.User.get(beanie.PydanticObjectId(user_id))
-    )
+    user = "change according to database"
     return user
 
 

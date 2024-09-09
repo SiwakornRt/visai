@@ -2,7 +2,7 @@ import optparse
 
 from flask import Flask
 
-# from werkzeug.middleware.dispatcher import DispatcherMiddleware
+from dotenv import load_dotenv, dotenv_values
 
 from pipek import dashapp
 from . import views
@@ -22,6 +22,9 @@ def create_app():
     flask_app = Flask(__name__)
     flask_app.config.from_object("pipek.default_settings")
     flask_app.config.from_envvar("PIPEK_SETTINGS", silent=True)
+
+    load_dotenv()
+    flask_app.config.update(dotenv_values(".env"))
 
     views.register_blueprint(flask_app)
     caches.init_cache(flask_app)
