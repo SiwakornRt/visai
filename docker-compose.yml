@@ -86,9 +86,6 @@ services:
     restart: always
     env_file:
       - .env
-
-    # environment:
-    # PIPEK_SETTINGS: /app/pipek-production.cfg
     command: /venv/bin/pipek-worker
     logging:
       options:
