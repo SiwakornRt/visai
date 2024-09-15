@@ -33,7 +33,7 @@ class ControllerServer:
     async def interval(self):
         self.running = True
         while self.running:
-            print(datetime.datetime.now(), "sleep 1s")
+            print(datetime.datetime.now(), "controller sleep 1s")
             await asyncio.sleep(1)
 
     async def stop(self):

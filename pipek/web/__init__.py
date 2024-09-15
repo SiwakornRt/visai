@@ -1,4 +1,5 @@
 import optparse
+import os
 
 from flask import Flask
 
@@ -24,7 +25,8 @@ def create_app():
     flask_app.config.from_envvar("PIPEK_SETTINGS", silent=True)
 
     load_dotenv()
-    flask_app.config.update(dotenv_values(".env"))
+    pipek_env = os.environ.get("PIPEK_ENV", ".env")
+    flask_app.config.update(dotenv_values(pipek_env))
 
     views.register_blueprint(flask_app)
     caches.init_cache(flask_app)

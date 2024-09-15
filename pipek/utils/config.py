@@ -8,6 +8,8 @@ logger = logging.getLogger(__name__)
 
 settings = None
 
+import json
+
 
 def get_settings():
     global settings
@@ -27,6 +29,7 @@ def get_settings():
         settings.from_envvar("PIPEK_SETTINGS", silent=True)
 
         load_dotenv()
-        settings.update(dotenv_values(".env"))
+        config_env = os.environ.get("PIPEK_ENV", ".env")
+        settings.update(dotenv_values(config_env))
 
     return settings
