@@ -23,7 +23,7 @@ class IfdashWorker(SimpleWorker):
         settings = kwargs.pop("settings")
         super().__init__(*args, **kwargs)
 
-        # models.init_mongoengine(settings)
+        models.init_sqlalchemy(settings)
 
 
 class WorkerServer:

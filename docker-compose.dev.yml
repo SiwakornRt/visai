@@ -12,6 +12,30 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+  postgresql:
+    image: docker.io/library/postgres:16
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      start_period: 20s
+      interval: 60s
+      retries: 5
+      timeout: 5s
+    ports:
+      - 5432:5432
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=CoEpasswd
+      - POSTGRES_USER=coe
+      - POSTGRES_DB=aies_dashdb
+    logging:
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+
   web:
     build: .
     image: pipek-image
@@ -95,3 +119,4 @@ networks:
 
 volumes:
   redis_data:
+  postgresql_data:

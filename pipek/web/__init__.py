@@ -1,5 +1,6 @@
 import optparse
 import os
+import pathlib
 
 from flask import Flask
 
@@ -9,7 +10,6 @@ from pipek import dashapp
 from . import views
 from . import caches
 
-from .. import clients
 from .. import models
 
 
@@ -38,6 +38,11 @@ def create_app():
     acl.init_acl(flask_app)
 
     dashapp.init_dash(flask_app)
+
+    data_path = pathlib.Path(flask_app.config.get("PIPEK_DATA", "data")) / "images"
+    if not data_path.exists():
+        data_path.mkdir(parents=True, exist_ok=True)
+
     return flask_app
 
 

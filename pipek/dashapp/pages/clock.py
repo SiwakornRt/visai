@@ -13,9 +13,7 @@ current_date_interval = dcc.Interval(
 layout = html.Div(
     children=[
         current_date_interval,
-        html.H1(children="Service"),
+        html.H1(children="Current Date"),
         html.Div(id="current-date"),
-        # health_check_bar,
-        # html.Div(id="problem_services", style={"padding-top": "1em"}),
     ]
 )

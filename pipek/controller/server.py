@@ -12,7 +12,7 @@ import time
 logger = logging.getLogger(__name__)
 
 
-from pipek import models, clients
+from pipek import models
 import json
 
 
