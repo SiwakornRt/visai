@@ -68,6 +68,7 @@ RUN set -ex \
     && pip install --use-feature=2020-resolver apache-airflow[crypto,celery,postgres,hive,jdbc,mysql,ssh${AIRFLOW_DEPS:+,}${AIRFLOW_DEPS}]==${AIRFLOW_VERSION} \
     && pip install apache-airflow-providers-apache-spark \
     && pip install apache-airflow-providers-amazon \
+    && pip install apache-airflow-providers-redis \  
     && pip install redis \
     && if [ -n "${PYTHON_DEPS}" ]; then pip install ${PYTHON_DEPS}; fi \
     && apt-get purge --auto-remove -yqq $buildDeps \

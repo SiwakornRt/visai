@@ -13,6 +13,7 @@ services:
             - minio
             - spark-master
             - spark-worker
+            - redis # เพิ่ม Redis เป็น dependency
         environment:   
             - AIRFLOW__CORE__LOAD_EXAMPLES=False
             - LOAD_EX=n
@@ -30,6 +31,18 @@ services:
             interval: 30s
             timeout: 30s
             retries: 3
+
+    redis: # เพิ่ม Redis service
+        image: redis:latest
+        container_name: redis
+        ports:
+            - "6379:6379"
+        networks:
+            - airflow
+        deploy:
+          resources:
+            limits:
+              memory: 200MB
 
     postgres:
         hostname: postgres
