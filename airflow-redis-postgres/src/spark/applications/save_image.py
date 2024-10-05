@@ -23,8 +23,8 @@ def download_image(image_url, output_dir):
     try:
         # สร้างชื่อไฟล์จาก timestamp ปัจจุบัน
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        file_extension = image_url.split('.')[-1]  # ดึงนามสกุลไฟล์จาก URL เช่น jpg, png
-        file_name = f"{timestamp}.{file_extension}"
+        # file_extension = image_url.split('.')[-1]  # ดึงนามสกุลไฟล์จาก URL เช่น jpg, png
+        file_name = f"{timestamp}.jpg"
         file_path = os.path.join(output_dir, file_name)
         
         # ดาวน์โหลดรูปภาพ
