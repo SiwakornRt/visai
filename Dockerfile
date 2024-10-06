@@ -17,7 +17,10 @@ RUN $PYTHON -m pip install wheel poetry gunicorn
 
 WORKDIR /app
 
-ENV visai_SETTINGS=/app/visai-production.cfg
+# Set the PYTHONPATH environment variable
+ENV PYTHONPATH="${PYTHONPATH}:/app/detectron2"
+
+ENV VISAI_SETTINGS=/app/visai-production.cfg
 
 COPY visai/cmd /app/visai/cmd
 COPY poetry.lock pyproject.toml /app/
