@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, redirect
 
 from .. import redis_rq
 
-from pipek.jobs import hello_rq
+from visai.jobs import hello_rq
 
 module = Blueprint("rq-test", __name__, url_prefix="/rq-test")
 

@@ -6,7 +6,7 @@ from flask import Flask
 
 from dotenv import load_dotenv, dotenv_values
 
-from pipek import dashapp
+from visai import dashapp
 from . import views
 from . import caches
 
@@ -21,12 +21,12 @@ from . import redis_rq
 
 def create_app():
     flask_app = Flask(__name__)
-    flask_app.config.from_object("pipek.default_settings")
-    flask_app.config.from_envvar("PIPEK_SETTINGS", silent=True)
+    flask_app.config.from_object("visai.default_settings")
+    flask_app.config.from_envvar("visai_SETTINGS", silent=True)
 
     load_dotenv()
-    pipek_env = os.environ.get("PIPEK_ENV", ".env")
-    flask_app.config.update(dotenv_values(pipek_env))
+    visai_env = os.environ.get("visai_ENV", ".env")
+    flask_app.config.update(dotenv_values(visai_env))
 
     views.register_blueprint(flask_app)
     caches.init_cache(flask_app)
@@ -39,7 +39,7 @@ def create_app():
 
     dashapp.init_dash(flask_app)
 
-    data_path = pathlib.Path(flask_app.config.get("PIPEK_DATA", "data")) / "images"
+    data_path = pathlib.Path(flask_app.config.get("visai_DATA", "data")) / "images"
     if not data_path.exists():
         data_path.mkdir(parents=True, exist_ok=True)
 

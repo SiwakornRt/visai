@@ -1,5 +1,5 @@
 import optparse
-from pipek import web, dashapp
+from visai import web, dashapp
 import os
 
 

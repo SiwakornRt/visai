@@ -1,4 +1,4 @@
-from pipek import controller
+from visai import controller
 
 
 def main():

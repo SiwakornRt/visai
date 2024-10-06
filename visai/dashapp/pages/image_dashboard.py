@@ -17,7 +17,17 @@ layout = html.Div(
             [
                 dbc.Col(
                     [
-                        html.H2(["Image Ids"]),
+                        html.H2(["Image URL"]),
+                        dcc.Input(
+                            id="image-url-input",
+                            type="text",
+                            placeholder="Enter image URL",
+                            style={"width": "100%"},
+                        ),
+                        html.Button(
+                            "Request Image", id="request-image-button", n_clicks=0
+                        ),
+                        html.Div(id="upload-status"),
                         html.Div(id="upload-image-ids"),
                     ]
                 ),
@@ -29,23 +39,6 @@ layout = html.Div(
                 ),
             ]
         ),
-        dcc.Upload(
-            id="upload-data",
-            children=html.Div(["Drag and Drop or ", html.A("Select Files")]),
-            style={
-                "width": "100%",
-                "height": "60px",
-                "lineHeight": "60px",
-                "borderWidth": "1px",
-                "borderStyle": "dashed",
-                "borderRadius": "5px",
-                "textAlign": "center",
-                "margin": "10px",
-            },
-            # Allow multiple files to be uploaded
-            multiple=True,
-        ),
-        html.Div(id="upload-status"),
         image_result_interval,
         dcc.Store(id="image-ids"),
     ]

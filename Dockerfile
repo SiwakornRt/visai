@@ -17,16 +17,16 @@ RUN $PYTHON -m pip install wheel poetry gunicorn
 
 WORKDIR /app
 
-ENV PIPEK_SETTINGS=/app/pipek-production.cfg
+ENV visai_SETTINGS=/app/visai-production.cfg
 
-COPY pipek/cmd /app/pipek/cmd
+COPY visai/cmd /app/visai/cmd
 COPY poetry.lock pyproject.toml /app/
 
 RUN . /venv/bin/activate \
 	&& poetry config virtualenvs.create false \
 	&& poetry install --no-interaction --only main
 
-COPY pipek/web/static/package.json pipek/web/static/package-lock.json pipek/web/static/
-RUN npm install --prefix pipek/web/static
+COPY visai/web/static/package.json visai/web/static/package-lock.json visai/web/static/
+RUN npm install --prefix visai/web/static
 
 COPY . /app

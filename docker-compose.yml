@@ -2,9 +2,9 @@
 services:
   redis:
     image: redis/redis-stack-server
-    container_name: pipek-redis
+    container_name: visai-redis
     volumes:
-      - ../deployment/pipek/redis/data:/data
+      - ../deployment/visai/redis/data:/data
     restart: always
     networks:
       - default
@@ -38,8 +38,8 @@ services:
 
   web:
     build: .
-    image: pipek-image
-    container_name: pipek-web
+    image: visai-image
+    container_name: visai-web
     volumes:
       - ../deployment:/deployment
       - /etc/localtime:/etc/localtime:ro
@@ -53,11 +53,11 @@ services:
       - default
     restart: always
     environment:
-      PIPEK_SETTINGS: /app/.env
+      visai_SETTINGS: /app/.env
     env_file:
       - .env
     command: 
-      /venv/bin/gunicorn -w 8 --bind 0.0.0.0:9000 "pipek.web:create_app()"
+      /venv/bin/gunicorn -w 8 --bind 0.0.0.0:9000 "visai.web:create_app()"
     logging:
       options:
         max-size: "10m"
@@ -65,8 +65,8 @@ services:
 
   controller:
     build: .
-    image: pipek-image
-    container_name: pipek-controller
+    image: visai-image
+    container_name: visai-controller
     volumes:
       - ../deployment:/deployment
       - /etc/localtime:/etc/localtime:ro
@@ -78,10 +78,10 @@ services:
       - default
     restart: always
     # environment:
-    # PIPEK_SETTINGS: /app/pipek-production.cfg
+    # visai_SETTINGS: /app/visai-production.cfg
     env_file:
       - .env
-    command: /venv/bin/pipek-controller
+    command: /venv/bin/visai-controller
     logging:
       options:
         max-size: "10m"
@@ -90,8 +90,8 @@ services:
 
   worker:
     build: .
-    image: pipek-image
-    container_name: pipek-worker
+    image: visai-image
+    container_name: visai-worker
     volumes:
       - ../deployment:/deployment
       - /etc/localtime:/etc/localtime:ro
@@ -102,7 +102,7 @@ services:
     restart: always
     env_file:
       - .env
-    command: /venv/bin/pipek-worker
+    command: /venv/bin/visai-worker
     logging:
       options:
         max-size: "10m"

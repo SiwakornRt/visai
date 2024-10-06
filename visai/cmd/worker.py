@@ -1,4 +1,4 @@
-from pipek import worker
+from visai import worker
 
 
 def main():

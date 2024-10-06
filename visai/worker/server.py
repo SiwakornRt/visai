@@ -9,7 +9,7 @@ import os
 import redis
 from rq import Worker, Queue, Connection, SimpleWorker
 
-from pipek import models
+from visai import models
 
 import logging
 

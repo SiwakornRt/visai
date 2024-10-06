@@ -1,4 +1,4 @@
-APP_TITLE = "pipek"
+APP_TITLE = "visai"
 
 DEBUG = False
 
@@ -7,4 +7,4 @@ REDIS_URL = "redis://localhost"
 CACHE_TYPE = "SimpleCache"
 
 SQLALCHEMY_DATABASE_URI = "sqlite:///project.db"
-PIPEK_DATA = "data"
+VISAI_DATA = "data"

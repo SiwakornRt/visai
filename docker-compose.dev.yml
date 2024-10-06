@@ -2,7 +2,7 @@
 services:
   redis:
     image: redis/redis-stack-server
-    container_name: pipek-redis
+    container_name: visai-redis
     volumes:
       - redis_data:/data
     restart: always
@@ -38,8 +38,8 @@ services:
 
   web:
     build: .
-    image: pipek-image
-    container_name: pipek-web
+    image: visai-image
+    container_name: visai-web
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./:/app
@@ -53,11 +53,11 @@ services:
       - default
     restart: always
     environment:
-      PIPEK_ENV: /app/.env.dev
+      visai_ENV: /app/.env.dev
     env_file:
       - .env.dev
     command: 
-      /venv/bin/pipek-dash -H 0.0.0.0 --port 8080 -d
+      /venv/bin/visai-dash -H 0.0.0.0 --port 8080 -d
     logging:
       options:
         max-size: "10m"
@@ -65,8 +65,8 @@ services:
 
   controller:
     build: .
-    image: pipek-image
-    container_name: pipek-controller
+    image: visai-image
+    container_name: visai-controller
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./:/app
@@ -78,11 +78,11 @@ services:
       - default
     restart: always
     environment:
-      PIPEK_ENV: /app/.env.dev
+      visai_ENV: /app/.env.dev
     env_file:
       - .env.dev
     command:
-      /venv/bin/pipek-controller
+      /venv/bin/visai-controller
 
     logging:
       options:
@@ -92,8 +92,8 @@ services:
 
   worker:
     build: .
-    image: pipek-image
-    container_name: pipek-worker
+    image: visai-image
+    container_name: visai-worker
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - ./:/app
@@ -105,9 +105,9 @@ services:
     env_file:
       - .env.dev
     environment:
-      PIPEK_ENV: /app/.env.dev
+      visai_ENV: /app/.env.dev
     command:
-      /venv/bin/pipek-worker
+      /venv/bin/visai-worker
     logging:
       options:
         max-size: "10m"

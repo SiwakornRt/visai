@@ -15,7 +15,7 @@ def get_settings():
     global settings
 
     if not settings:
-        filename = os.environ.get("PIPEK_SETTINGS", None)
+        filename = os.environ.get("visai_SETTINGS", None)
 
         # if filename is None:
         #     print('This program require NOKKHUM_SETTINGS environment')
@@ -25,11 +25,11 @@ def get_settings():
         file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "../../")
 
         settings = flask.config.Config(file_path)
-        settings.from_object("pipek.default_settings")
-        settings.from_envvar("PIPEK_SETTINGS", silent=True)
+        settings.from_object("visai.default_settings")
+        settings.from_envvar("visai_SETTINGS", silent=True)
 
         load_dotenv()
-        config_env = os.environ.get("PIPEK_ENV", ".env")
+        config_env = os.environ.get("visai_ENV", ".env")
         settings.update(dotenv_values(config_env))
 
     return settings
