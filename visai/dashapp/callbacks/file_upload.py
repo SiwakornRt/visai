@@ -11,7 +11,7 @@ import base64
 from flask import current_app
 from visai import models
 from visai.web import redis_rq
-from visai.jobs import face_detections
+from visai.jobs import people_detections
 
 
 # Function to load an image from a URL
@@ -56,7 +56,7 @@ def parse_image(image, filename):
 
     # Enqueue a job for face detection
     job = redis_rq.redis_queue.queue.enqueue(
-        face_detections.detect,
+        people_detections.detect,
         args=(db_image.id,),
         timeout=600,
         job_timeout=600,
