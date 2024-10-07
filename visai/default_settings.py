@@ -7,4 +7,5 @@ REDIS_URL = "redis://localhost"
 CACHE_TYPE = "SimpleCache"
 
 SQLALCHEMY_DATABASE_URI = "sqlite:///project.db"
+AIRFLOW_DATABASE_URI = "postgresql://airflow:airflow@postgres:5431/airflow"
 VISAI_DATA = "data"

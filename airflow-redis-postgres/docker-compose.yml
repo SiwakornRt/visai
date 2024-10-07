@@ -56,7 +56,7 @@ services:
         volumes:
             - postgres:/data/postgres
         ports:
-            - "5432:5432"
+            - "5431:5432"
         networks:
             - airflow
         restart: on-failure

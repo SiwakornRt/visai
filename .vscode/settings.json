@@ -1,0 +1,14 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5431,
+            "driver": "PostgreSQL",
+            "name": "my_postgres_connection",
+            "database": "airflow",
+            "username": "airflow",
+            "password": "airflow"
+        }
+    ]
+}

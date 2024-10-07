@@ -12,7 +12,8 @@ class Image(base.Base):
     __tablename__ = "images"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    path: Mapped[str] = mapped_column(String(500))
+    path_raw: Mapped[str] = mapped_column(String(500))
+    path_processed: Mapped[str] = mapped_column(String(500))
     filename: Mapped[Optional[str]]
     results: Mapped[Optional[str]] = mapped_column(default="")
 
